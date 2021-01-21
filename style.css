@@ -1,0 +1,364 @@
+/***********
+Theme Name : 法泉寺
+***********/
+
+/***********
+全体
+***********/
+*{
+  box-sizing: border-box;
+  position: relative;
+}
+ul{
+  padding-inline-start: 0;
+}
+li{
+  list-style:none;
+}
+img{
+  height:auto;
+}
+a{
+  text-decoration: none;
+  color:rgb(5,5,5);
+}
+@media screen and (max-width: 1000px) {
+	.pc{
+		display: none !important;
+	}
+}
+@media screen and (min-width: 1001px) {
+	.sp{
+		display: none !important;
+	}
+}
+
+/***********
+トップページ
+***********/
+div.wrap{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+/* サイドバー */
+div.wrap aside{
+  width:25%;
+  height:100vh;
+  padding:24px;
+  background-color:rgb(221,240,250);
+  position: fixed;
+  top:0;
+  left:0;
+}
+div.wrap aside h1,
+div.wrap aside h2{
+  width:100%;
+  text-align:center;
+  font-family: "FOT-クックハンド Std R";
+}
+/* 以下メニューボタン */
+div.wrap aside nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+div.wrap aside nav ul li{
+  width:calc(100% / 2.1);
+  margin-bottom: 16px;
+  border-radius:16px;
+  box-shadow:3px 3px 3px rgba(5,5,5,.5);
+  cursor: pointer;
+  z-index:0;
+}
+/* 元の色 */
+div.wrap aside nav ul li:first-child::before,
+div.wrap aside nav ul li:last-child::before,
+div.wrap aside nav ul li:nth-child(2)::before,
+div.wrap aside nav ul li:nth-child(3)::before{
+  content:"";
+  width:100%;
+  height:100%;
+  border-radius:16px;
+  position:absolute;
+  z-index:-1;
+  left:0;
+  transition:0.5s;
+}
+div.wrap aside nav ul li:first-child::before,
+div.wrap aside nav ul li:last-child::before{
+  background: linear-gradient(225deg,rgb(255,185,207),rgb(250,250,250));
+}
+div.wrap aside nav ul li:nth-child(2)::before,
+div.wrap aside nav ul li:nth-child(3)::before{
+  background: linear-gradient(135deg,rgb(175,221,255),rgb(250,250,250));
+}
+/* hoverしたときの色 */
+div.wrap aside nav ul li:first-child::after,
+div.wrap aside nav ul li:last-child::after,
+div.wrap aside nav ul li:nth-child(2)::after,
+div.wrap aside nav ul li:nth-child(3)::after{
+  content:"";
+  width:100%;
+  height:100%;
+  border-radius:16px;
+  position:absolute;
+  z-index:-2;
+  top:0;
+  left:0;
+}
+div.wrap aside nav ul li:first-child::after,
+div.wrap aside nav ul li:last-child::after{
+  background: linear-gradient(225deg,rgb(255,185,207),rgb(250,250,250),rgb(250,250,250));
+}
+div.wrap aside nav ul li:nth-child(2)::after,
+div.wrap aside nav ul li:nth-child(3)::after{
+  background: linear-gradient(135deg,rgb(175,221,255),rgb(250,250,250),rgb(250,250,250));
+}
+div.wrap aside nav ul li:nth-child(2):hover::before,
+div.wrap aside nav ul li:nth-child(3):hover::before,
+div.wrap aside nav ul li:first-child:hover::before,
+div.wrap aside nav ul li:last-child:hover::before{
+  opacity: 0;
+}
+/* クリックしたとき */
+div.wrap aside nav ul li:active{
+  box-shadow: none;
+  top:3px;
+  left:3px;
+}
+/* 縦横比可変・維持 */
+div.wrap aside nav ul li a{
+  display: block;
+  width : 100%;
+  padding-top : 100%;
+  color:rgb(5,5,5);
+  font-family: "FOT-筑紫B丸ゴシック Std D";
+  font-size:24px;
+}
+/* テキスト上下中央 */
+div.wrap aside nav ul li a span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+/* メニューボタン下のリスト */
+div.wrap aside>ul li{
+  color:rgb(128,128,128);
+  margin-bottom:8px;
+}
+div.wrap aside>ul li::before{
+  width:16px;
+  height:16px;
+  content:'▶';
+}
+/* メインコンテンツ */
+div.wrap main{
+  width:75%;
+  left:25%;
+}
+
+/* メインビジュアル */
+div.wrap main section#mainvisual img{
+  width:100%;
+  max-height:100vh;
+}
+
+/* 縦書き箇所 */
+div.wrap main section#read{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  width:100%;
+  max-width:840px;
+  margin:32px auto 0 auto;
+  padding:40px;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+div.wrap main section#read span{
+  display: block;
+  width: calc(100% / 15.1);
+  padding-right: 11px;
+  background-image: url(img/border.png);
+  background-position-x: 40px;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  color:rgb(132,113,97);
+  font-family: "FOT-筑紫B丸ゴシック Std M";
+}
+div.wrap main section#read span:last-child{
+  text-align:right;
+}
+div.wrap main section#read span p{
+  display: inline-block;
+  margin:8px 0;
+  font-size:12px;
+}
+
+/* 縦書き以下見出しなど設定 */
+div.wrap main section#origin,
+div.wrap main section#temple,
+div.wrap main section#menu,
+div.wrap main section#notice{
+  padding:32px;
+}
+div.wrap main section#origin h1,
+div.wrap main section#temple h1,
+div.wrap main section#notice h1{
+  width:100%;
+  text-align:center;
+  font-family: "FOT-筑紫B丸ゴシック Std D";
+  line-height:56px;
+  margin-bottom:24px;
+}
+div.wrap main section#origin h1::before,
+div.wrap main section#temple h1::before,
+div.wrap main section#notice h1::before{
+  content: "";
+  display: inline-block;
+  width: 88px;
+  height: 88px;
+  background-image: url(img/fuwafuwa-1.png);
+  background-repeat: no-repeat;
+  background-size: 90%;
+  position: relative;
+  top: 24px;
+  left: 32px;
+  z-index: -2;
+  animation: float 5s linear infinite;
+  transform-origin: 50% 50%;
+}
+div.wrap main section#origin h1::after,
+div.wrap main section#temple h1::after,
+div.wrap main section#notice h1::after{
+  content: "";
+  width: 48px;
+  height: 48px;
+  background-image: url(img/fuwafuwa-2.png);
+  background-size: 90%;
+  display: inline-block;
+  position: relative;
+  left: -20px;
+  top:8px;
+  z-index: -2;
+  animation: float 3s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes float {
+  0% { transform: translateY(0) }
+  33.33333% { transform: translateY(-6px) }
+  66.66667% { transform: translateY(0) }
+  100% { transform: translateY(0) }
+}
+
+/* 灰色ボタン */
+div.wrap main section .btn{
+  display: block;
+  width:300px;
+  line-height:40px;
+  margin: 16px 0 0 auto;
+  padding:0 16px;
+  background-color:rgb(153,153,153);
+  color:rgb(250,250,250);
+  border-radius:24px;
+  text-align:center;
+  transition:all .5s;
+}
+div.wrap main section .btn:hover{
+  background-color:rgb(50,50,50);
+}
+
+/* お寺の在り方 */
+div.wrap main section#temple{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+div.wrap main section#temple p{
+  width:calc(100% / 2.1);
+}
+
+/* 正方形メニュー */
+div.wrap main section#menu{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+div.wrap main section#menu a{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  width:calc(100% / 2.1);
+  height:auto;
+  margin-bottom:24px;
+  padding:24px;
+  border-radius:24px;
+  box-shadow:0 0 8px rgba(5,5,5,.5);
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  border:solid 2px rgb(250,250,250);
+}
+div.wrap main section#menu a:first-child,
+div.wrap main section#menu a:last-child{
+  background: linear-gradient(rgb(255,185,207),rgb(250,250,250));
+}
+div.wrap main section#menu a:nth-child(2),
+div.wrap main section#menu a:nth-child(3){
+  background: linear-gradient(rgb(175,221,255),rgb(250,250,250));
+}
+@keyframes swing {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-1deg); }
+  60% { transform: rotate(1deg); }
+  100% { transform: rotate(0deg); }
+}
+div.wrap main section#menu a:hover{
+  transform-origin: top center;
+  animation-name: swing;
+}
+div.wrap main section#menu a:active{
+  box-shadow: 0 0 2px rgba(5,5,5,.5);
+}
+div.wrap main section#menu a h1,
+div.wrap main section#menu a img{
+  display: block;
+  width:calc(100% / 2.1);
+}
+div.wrap main section#menu a h1{
+  text-align: center;
+  font-family: "FOT-筑紫B丸ゴシック Std D";
+}
+div.wrap main section#menu a p{
+  margin-top:16px;
+}
+
+/* お知らせ */
+div.wrap main section#notice ul li{
+  text-align:center;
+  margin-bottom:16px;
+}
+div.wrap main section#notice ul li a time{
+  margin-right:16px;
+}
+div.wrap main section#notice ul li a{
+  transition:all .1s;
+  border-bottom:solid 1px #fff;
+}
+div.wrap main section#notice ul li a:hover{
+  border-bottom:solid 1px #ccc;
+}
+
+/* フッター */
+footer{
+  width:100%;
+  padding:40px;
+  background-color:rgb(179,179,179);
+  color:rgb(250,250,250);
+  text-align:center;
+}
