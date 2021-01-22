@@ -146,14 +146,19 @@ div.wrap aside nav ul li a span{
   -ms-transform: translate(-50%, -50%);
 }
 /* メニューボタン下のリスト */
-div.wrap aside>ul li{
+div.wrap aside>ul li a{
+  display: block;
   color:rgb(128,128,128);
   margin-bottom:8px;
+  transition: all .5s;
 }
-div.wrap aside>ul li::before{
+div.wrap aside>ul li a::before{
   width:16px;
   height:16px;
   content:'▶';
+}
+div.wrap aside>ul li a:hover{
+  color:rgb(50,50,50);
 }
 /* メインコンテンツ */
 div.wrap main{
