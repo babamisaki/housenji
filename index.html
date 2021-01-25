@@ -19,7 +19,7 @@
 
 <body>
   <div class="wrap">
-    <aside>
+    <aside class="pc">
       <h2>浅草</h2>
       <h1>法泉寺</h1>
       <nav>
@@ -36,11 +36,35 @@
         <li><a href="">アクセス</a></li>
       </ul>
     </aside>
+    <aside class="sp">
+      <div id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <div id="nav-content">
+          <h2>浅草</h2>
+          <h1>法泉寺</h1>
+          <nav>
+            <ul>
+              <li><a href=""><span>お墓</span></a></li>
+              <li><a href=""><span>葬儀</span></a></li>
+              <li><a href=""><span>法要</span></a></li>
+              <li><a href=""><span>相談</span></a></li>
+            </ul>
+          </nav>
+          <ul>
+            <li><a href="">浅草法泉寺について</a></li>
+            <li><a href="">お知らせ</a></li>
+            <li><a href="">アクセス</a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
     <main>
-      <section id="mainvisual">
+      <section id="mainvisual" class="load-fade">
         <img src="img/mainvisual.jpg" width="1200" height="800">
       </section>
-      <section id="read">
+      <section id="read" class="load-fade">
         <span>お寺の本来の役目は、あなたに</span>
         <span>とって大切なひとを大事に供養</span>
         <span>することです。</span>
@@ -118,6 +142,33 @@
   <script src="js/vendor/modernizr-3.11.3.min.js"></script>
   <script src="js/plugins.js"></script>
 
+  <!-- 以下jquery -->
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script>
+    //ふわっとロード
+    $(function(){
+      load_effect();
+      $(window).scroll(function (){
+        scroll_effect();
+      });
+    });
+    function load_effect(){
+      var tt = $(window).scrollTop();
+      var hh = $(window).height();
+      $('.load-fade').each(function(){
+        var yy = $(this).offset().top;
+        if (tt > yy - hh){
+          $(this).addClass('done');
+        }
+      });
+      $('.load-up').each(function(){
+        var yy = $(this).offset().top;
+        if (tt > yy - hh){
+          $(this).addClass('done');
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>

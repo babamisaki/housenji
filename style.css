@@ -22,15 +22,23 @@ a{
   text-decoration: none;
   color:rgb(5,5,5);
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
 	.pc{
 		display: none !important;
 	}
 }
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: 901px) {
 	.sp{
 		display: none !important;
 	}
+}
+.load-fade {
+  opacity : 0;
+  transition : all 5s
+}
+.load-fade.done{
+  opacity : 1;
+  transform : translate(0, 0);
 }
 
 /***********
@@ -43,13 +51,14 @@ div.wrap{
 }
 /* サイドバー */
 div.wrap aside{
-  width:25%;
+  width:300px;
   height:100vh;
   padding:24px;
   background-color:rgb(221,240,250);
   position: fixed;
   top:0;
   left:0;
+  z-index:1;
 }
 div.wrap aside h1,
 div.wrap aside h2{
@@ -69,7 +78,7 @@ div.wrap aside nav ul li{
   border-radius:16px;
   box-shadow:3px 3px 3px rgba(5,5,5,.5);
   cursor: pointer;
-  z-index:0;
+  z-index:2;
 }
 /* 元の色 */
 div.wrap aside nav ul li:first-child::before,
@@ -81,7 +90,7 @@ div.wrap aside nav ul li:nth-child(3)::before{
   height:100%;
   border-radius:16px;
   position:absolute;
-  z-index:-1;
+  z-index:4;
   left:0;
   transition:0.5s;
 }
@@ -103,7 +112,7 @@ div.wrap aside nav ul li:nth-child(3)::after{
   height:100%;
   border-radius:16px;
   position:absolute;
-  z-index:-2;
+  z-index:3;
   top:0;
   left:0;
 }
@@ -144,6 +153,7 @@ div.wrap aside nav ul li a span{
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+  z-index: 4;
 }
 /* メニューボタン下のリスト */
 div.wrap aside>ul li a{
@@ -155,21 +165,23 @@ div.wrap aside>ul li a{
 div.wrap aside>ul li a::before{
   width:16px;
   height:16px;
-  content:'▶';
+  content:url(img/tryangle.png);
 }
 div.wrap aside>ul li a:hover{
   color:rgb(50,50,50);
 }
+
 /* メインコンテンツ */
 div.wrap main{
-  width:75%;
-  left:25%;
+  width:calc(100% - 300px);
+  left:300px;
 }
 
 /* メインビジュアル */
 div.wrap main section#mainvisual img{
   width:100%;
-  max-height:100vh;
+  max-height:80vh;
+  object-fit: cover;
 }
 
 /* 縦書き箇所 */
@@ -211,6 +223,8 @@ div.wrap main section#temple,
 div.wrap main section#menu,
 div.wrap main section#notice{
   padding:32px;
+  max-width:1200px;
+  margin:0 auto;
 }
 div.wrap main section#origin h1,
 div.wrap main section#temple h1,
@@ -234,7 +248,7 @@ div.wrap main section#notice h1::before{
   position: relative;
   top: 24px;
   left: 32px;
-  z-index: -2;
+  z-index: -1;
   animation: float 5s linear infinite;
   transform-origin: 50% 50%;
 }
@@ -250,7 +264,7 @@ div.wrap main section#notice h1::after{
   position: relative;
   left: -20px;
   top:8px;
-  z-index: -2;
+  z-index: -1;
   animation: float 3s linear infinite;
   transform-origin: 50% 50%;
 }
@@ -274,7 +288,8 @@ div.wrap main section .btn{
   text-align:center;
   transition:all .5s;
 }
-div.wrap main section .btn:hover{
+div.wrap main section .btn:hover,
+div.wrap main section .btn:active{
   background-color:rgb(50,50,50);
 }
 
@@ -366,4 +381,162 @@ footer{
   background-color:rgb(179,179,179);
   color:rgb(250,250,250);
   text-align:center;
+}
+
+/* 900px以下（タブレットなど） */
+@media screen and (max-width: 900px) {
+  /* サイドメニュー */
+  #nav-drawer {
+    position: relative;
+  }
+  .nav-unshown {
+    display:none;
+  }
+  #nav-open {
+    display: inline-block;
+    width: 40px;
+    height: 148px;
+    vertical-align: middle;
+  }
+  #nav-open span,
+  #nav-open span:before{
+    position: absolute;
+    width: 40px;
+    height: 148px;
+    display: block;
+    content: url(img/btn-menu.png);
+    cursor: pointer;
+  }
+  #nav-close {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: .3s ease-in-out;
+  }
+  #nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    width: 90%;
+    max-width: 330px;
+    height: 100%;
+    background: rgb(250,250,250);
+    transition: .3s ease-in-out;
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);
+  }
+  #nav-input:checked ~ #nav-close {
+    display: block;
+    opacity: .5;
+  }
+  #nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+  }
+  div.wrap aside{
+    width: 56px;
+    padding:8px;
+  }
+  div.wrap div#nav-content{
+    width:250px;
+    height:100vh;
+    padding:8px;
+    background-color:rgb(221,240,250);
+    position: fixed;
+    top:0;
+    left:0;
+  }
+  div.wrap div#nav-content nav ul li a{
+    font-size:16px;
+  }
+  div.wrap div#nav-content>ul li a{
+    display: block;
+    color:rgb(128,128,128);
+    margin-bottom:8px;
+    transition: all .5s;
+    font-size:16px;
+  }
+  div.wrap div#nav-content>ul li a::before{
+    width:16px;
+    height:16px;
+    content:url(img/tryangle.png);
+  }
+  div.wrap div#nav-content>ul li a:hover{
+    color:rgb(50,50,50);
+  }
+  div.wrap main{
+    width:calc(100% - 56px);
+    left:56px;
+    z-index:0;
+  }
+}
+/* 900px以下（タブレットなど） */
+@media screen and (max-width: 700px) {
+  div.wrap main section#mainvisual img{
+    height: 300px;
+    object-fit: cover;
+  }
+  div.wrap main section#read{
+    padding:8px;
+  }
+  div.wrap main section#read span{
+    background:none;
+    padding:0;
+  }
+  div.wrap main section#origin{
+    margin-top:40px;
+  }
+  div.wrap main section#origin,
+  div.wrap main section#temple,
+  div.wrap main section#menu,
+  div.wrap main section#notice{
+    padding:8px;
+    margin-bottom:40px;
+  }
+  div.wrap main section#origin h1::before,
+  div.wrap main section#temple h1::before,
+  div.wrap main section#notice h1::before{
+    position: absolute;
+    top:-16px;
+    left:-16px;
+  }
+  div.wrap main section#origin h1::after,
+  div.wrap main section#temple h1::after,
+  div.wrap main section#notice h1::after{
+    position: absolute;
+    left:85%;
+  }
+  div.wrap main section#temple p,
+  div.wrap main section#menu a{
+    width:100%;
+  }
+  div.wrap main section#menu a:first-child,
+  div.wrap main section#menu a:nth-child(3){
+    background: linear-gradient(rgb(255,185,207),rgb(250,250,250));
+  }
+  div.wrap main section#menu a:nth-child(2),
+  div.wrap main section#menu a:last-child{
+    background: linear-gradient(rgb(175,221,255),rgb(250,250,250));
+  }
+  div.wrap main section#notice ul li{
+    margin-bottom:32px;
+  }
+  div.wrap main section#notice ul li a time{
+    display:block;
+  }
+  div.wrap main section#notice ul li a{
+    border-bottom: solid 1px #ccc;
+  }
+  footer{
+    z-index: 1;
+  }
 }
